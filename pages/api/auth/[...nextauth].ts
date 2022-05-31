@@ -8,6 +8,9 @@ import CredentialsProvider from "next-auth/providers/credentials"
 // https://next-auth.js.org/configuration/options
 export default NextAuth({
   // https://next-auth.js.org/configuration/providers/oauth
+  // pages: {
+  //   signIn: "/auth/email-sign-in",
+  // },
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
@@ -30,6 +33,7 @@ export default NextAuth({
         // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
         // You can also use the `req` object to obtain additional parameters
         // (i.e., the request IP address)
+
         // const res = await fetch(process.env.AUTH_SERVER_API || "", {
         //   method: "POST",
         //   body: JSON.stringify(credentials),
@@ -58,6 +62,7 @@ export default NextAuth({
   },
   callbacks: {
     async jwt({ token }) {
+      // You can modify token here
       token.userRole = "admin"
       return token
     },
